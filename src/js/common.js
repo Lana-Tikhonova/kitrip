@@ -103,6 +103,46 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
+    const swiperFull = new Swiper(".full_slider", {
+        slidesPerView: 1,
+        spaceBetween: 16,
+        watchSlidesProgress: true,
+        mousewheelControl: true,
+        watchOverflow: true,
+        watchSlidesVisibility: true,
+        effect: "fade",
+        fadeEffect: {
+            crossFade: true
+        },
+        speed: 1000,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+    const swiperReviews = new Swiper(".reviews_slider", {
+        slidesPerView: 2,
+        spaceBetween: 16,
+        watchSlidesProgress: true,
+        mousewheelControl: true,
+        watchOverflow: true,
+        watchSlidesVisibility: true,
+        speed: 1000,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
+        breakpoints: {
+            992: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+            },
+        },
+    });
 
     const allTabs = document.querySelectorAll(".tabs");
 
