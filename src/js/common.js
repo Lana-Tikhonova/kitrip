@@ -16,7 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const target = document.getElementById('tours');
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
+            const top = target.getBoundingClientRect().top + window.pageYOffset - 20;
+
+            window.scrollTo({
+                top: top,
+                behavior: 'smooth'
+            })
         }
     });
 
@@ -47,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
         effect: "fade",
         fadeEffect: {
             crossFade: true
+        },
+        speed: 1000,
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
         },
         navigation: {
             nextEl: ".swiper-button-next",
@@ -80,10 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
         mousewheelControl: true,
         watchOverflow: true,
         watchSlidesVisibility: true,
+        allowTouchMove: false,
         effect: "fade",
         fadeEffect: {
             crossFade: true
         },
+        speed: 1000,
         autoplay: {
             delay: 3500,
             disableOnInteraction: false,

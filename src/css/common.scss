@@ -762,6 +762,7 @@ label {
 			height: 100%;
 			object-fit: cover;
 			z-index: -1;
+			pointer-events: none;
 		}
 
 		.content {
@@ -837,7 +838,7 @@ label {
 // head
 .head_section {
 	position: relative;
-	padding: 167px 0 350px;
+	padding: 140px 0 350px;
 	margin-bottom: -325px;
 	overflow: hidden;
 }
@@ -1288,6 +1289,7 @@ label {
 }
 
 .why_slider {
+
 	.swiper-slide {
 		height: auto;
 
@@ -1296,6 +1298,8 @@ label {
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			pointer-events: none;
+
 		}
 	}
 }
@@ -1411,7 +1415,7 @@ label {
 	border: 1px solid $color_black;
 	font-weight: 700;
 	transition: $transition;
-	// flex: 1 0 0%;
+	color: $color_black;
 	flex-grow: 1;
 	flex-shrink: 0;
 	flex-basis: auto;
