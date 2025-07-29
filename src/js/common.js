@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         watchOverflow: true,
         watchSlidesVisibility: true,
         allowTouchMove: false,
+        loop: true,
         effect: "fade",
         fadeEffect: {
             crossFade: true
@@ -164,6 +165,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 applyTheme('light');
             });
         }
+    });
+
+    tippy('.tippy_btn', {
+        // allowHTML: true,
+        // arrow: false,
+        placement: 'bottom',
+        maxWidth: '150px',
+        animation: 'scale',
+        interactive: true,
+        duration: [400, 200],
+        theme: 'consumable_theme',
     });
 
 })
