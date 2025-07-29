@@ -540,6 +540,20 @@ label {
 	z-index: 100;
 	background: rgba(236, 218, 196, 0.60);
 	transition: $transition;
+
+	// &:before {
+	// 	content: '';
+	// 	display: block;
+	// 	position: absolute;
+	// 	top: 0;
+	// 	left: 0;
+	// 	bottom: 0;
+	// 	right: 0;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	backdrop-filter: blur(5px);
+	// 	z-index: -1;
+	// }
 }
 
 .header_block {
@@ -2333,6 +2347,10 @@ label {
 	.arrow_mobile_bottom {
 		display: flex;
 	}
+
+	.footer {
+		padding-bottom: 40px;
+	}
 }
 
 @media screen and (max-width:440px) {
@@ -2393,6 +2411,7 @@ label {
 	.phone_block a {
 		text-align: center;
 	}
+
 }
 
 @media screen and (min-width:381px) and (max-width:440px) {
