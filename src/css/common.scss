@@ -3466,6 +3466,14 @@ label {
 	}
 }
 
+.form_section {
+	position: relative;
+
+	.bg {
+		position: absolute;
+	}
+}
+
 .application_block {
 	display: flex;
 

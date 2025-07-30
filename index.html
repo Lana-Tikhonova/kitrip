@@ -808,6 +808,80 @@
                 </div>
             </div>
         </section>
+        <section class='section'>
+            <div class="container">
+                <div class="title">
+                    <h2>заголовок</h2>
+                </div>
+                <div class="t-width t-width_100 "> <!-- nominify begin -->
+                    <title>Карта с всплывающими окнами</title>
+                    <script
+                        src="https://api-maps.yandex.ru/2.1/?apikey=2a74ac23-e4f2-4a95-a726-c6b8c31237ef&amp;lang=ru_RU"
+                        type="text/javascript"></script>
+                    <style>
+                        .map__wrapper {
+                            filter: grayscale(80%);
+                            transition: filter .3s ease-in-out;
+                        }
+
+                        .map__wrapper:hover {
+                            filter: grayscale(0%);
+                        }
+                    </style>
+                    <div class="map__wrapper">
+                        <div id="map" style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <script>
+                        ymaps.ready(function () {
+                            var myMap = new ymaps.Map("map", {
+                                center: [-34.133642, 20.805028], // Координаты центра карты (Кейптаун)
+                                zoom: 8, // Масштаб карты
+                                controls: [] // Убираем лишние элементы управления
+                            });
+
+                            // Создание объектов меток с всплывающими окнами
+                            var placemark2 = createPlacemark([-33.958102, 18.403348], 'День 2', 'https://sotrip.ru/map/geo_kitrip_2.png', 'https://sotrip.ru/map/test_2.png', '222 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+                            var placemark1 = createPlacemark([-33.909833, 18.390618], 'День 1', 'https://sotrip.ru/map/geo_kitrip_1.png', 'https://sotrip.ru/map/test_1.png', '111 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+                            var placemark3 = createPlacemark([-34.357834, 18.472950], 'День 3', 'https://sotrip.ru/map/geo_kitrip_3.png', 'https://sotrip.ru/map/test_3.png', '333 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+                            var placemark4 = createPlacemark([-33.933154, 18.863702], 'День 4', 'https://sotrip.ru/map/geo_kitrip_4.png', 'https://sotrip.ru/map/test_4.png', '444 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+                            var placemark5 = createPlacemark([-34.434609, 19.226151], 'День 5', 'https://sotrip.ru/map/geo_kitrip_5.png', 'https://sotrip.ru/map/test_5.png', '555 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+                            var placemark6 = createPlacemark([-34.832973, 19.999759], 'День 6', 'https://sotrip.ru/map/geo_kitrip_6.png', 'https://sotrip.ru/map/test_6.png', '666 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+                            var placemark7 = createPlacemark([-34.182931, 22.156322], 'День 7', 'https://sotrip.ru/map/geo_kitrip_7.png', 'https://sotrip.ru/map/test_7.png', '777 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+                            var placemark8 = createPlacemark([-34.052600, 22.035006], 'День 8', 'https://sotrip.ru/map/geo_kitrip_8.png', 'https://sotrip.ru/map/test_8.png', '888 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+                            var placemark9 = createPlacemark([-34.022702, 23.898072], 'День 9', 'https://sotrip.ru/map/geo_kitrip_9.png', 'https://sotrip.ru/map/test_9.png', '999 Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.');
+
+                            // Добавление меток на карту
+                            myMap.geoObjects.add(placemark2);
+                            myMap.geoObjects.add(placemark1);
+                            myMap.geoObjects.add(placemark3);
+                            myMap.geoObjects.add(placemark4);
+                            myMap.geoObjects.add(placemark5);
+                            myMap.geoObjects.add(placemark6);
+                            myMap.geoObjects.add(placemark7);
+                            myMap.geoObjects.add(placemark8);
+                            myMap.geoObjects.add(placemark9);
+                        });
+
+                        function createPlacemark(coordinates, hintContent, iconUrl, imageUrl, textContent) {
+                            return new ymaps.Placemark(coordinates, {
+                                hintContent: hintContent,
+                                balloonContent: `
+          <div style="display: flex; align-items: center;"> <div>
+              ${textContent}
+            </div> <div style="margin-left: 10px;"> <img src="${imageUrl}" alt="Изображение" width="120"> </div> </div>
+        `
+                            }, {
+                                iconLayout: 'default#image',
+                                iconImageHref: iconUrl, // Уникальная иконка для каждой метки
+                                iconImageSize: [52, 52],
+                                iconImageOffset: [-26, -52]
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+        </section>
     </main>
     <footer class='footer'>
         <div class="container">
