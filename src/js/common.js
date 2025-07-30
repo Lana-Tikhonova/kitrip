@@ -26,12 +26,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    var scene = document.querySelectorAll('.parallax');
-    if (scene) {
-        scene.forEach(element => {
-            var parallaxInstance = new Parallax(element)
-        });
+    let parallaxInstances = [];
+
+    function initParallax() {
+        parallaxInstances.forEach(instance => instance.destroy());
+        parallaxInstances = [];
+
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.parallax').forEach(element => {
+                let instance = new Parallax(element);
+                parallaxInstances.push(instance);
+            });
+        }
     }
+
+    initParallax();
+
+    window.addEventListener('resize', () => {
+        initParallax();
+    });
 
 
     // маска для телефона
