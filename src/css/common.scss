@@ -196,7 +196,7 @@ body {
 			color: $color_light;
 		}
 
-		.radio_list .item .text {
+		.radio_list .item .content {
 			color: rgba(249, 249, 249, 0.8);
 			border-color: rgba(249, 249, 249, 0.8);
 
@@ -214,7 +214,15 @@ body {
 			color: rgba(249, 249, 249, 0.8);
 		}
 
-		.radio_list .item input[type=radio]:checked~.text {
+		.radio_list .item input[type=radio]:checked~.content {
+			color: $color_light;
+		}
+
+		form {
+			color: $color_light;
+		}
+
+		.selection_quantity .counter {
 			color: $color_light;
 		}
 	}
@@ -524,6 +532,7 @@ form {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 20px;
+	position: relative;
 
 	&.error {
 		.form_input_checkbox {
@@ -565,9 +574,12 @@ form {
 
 label {
 	&.error {
-		font-size: 13px;
+		font-size: 10px;
 		color: red;
-		margin-top: 2px;
+		position: absolute;
+		top: 100%;
+		padding-top: 2px;
+		padding-left: 10px;
 	}
 }
 
@@ -586,7 +598,7 @@ label {
 	font-weight: 400;
 	height: 44px;
 	width: 100%;
-	color: #fff;
+	color: $color_black;
 	text-align: center;
 	font-family: "Montserrat";
 
@@ -3466,23 +3478,32 @@ label {
 	}
 }
 
-.form_section {
-	position: relative;
-
-	.bg {
-		position: absolute;
-	}
-}
+// .form_section {
+// 	padding-bottom: 180px;
+// }
 
 .application_block {
 	display: flex;
+	align-items: center;
 
-	.img {
-		width: 50%;
+	.image {
+		width: calc(100% + 21px - 540px);
+		margin-right: -21px;
+		position: relative;
+
+		.bg {
+			position: absolute;
+			z-index: -1;
+			width: 1100px;
+			max-width: 90vw;
+			top: 53%;
+			transform: translate(-50%, -50%);
+			left: 36%;
+		}
 	}
 
 	.form {
-		width: 50%;
+		width: 540px;
 		border-radius: 14px;
 		background: rgba(255, 255, 255, 0.15);
 		backdrop-filter: blur(10px);
@@ -3522,10 +3543,6 @@ label {
 }
 
 .radio_input {
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 46%;
 
 	.input_text {
 		color: rgba(0, 0, 0, 0.60);
@@ -3536,35 +3553,39 @@ label {
 		margin-top: 27px;
 	}
 
-	.form_input_group {}
-
 	.form_input {
 		color: rgba(26, 11, 3, 0.60);
-		font-size: 12px;
 		padding: 12px 15px;
+		text-align: left;
 
 		&::-webkit-input-placeholder {
 			text-transform: none;
+			font-size: 12px;
 		}
 
 		&:-moz-placeholder {
 			text-transform: none;
+			font-size: 12px;
 		}
 
 		&::-moz-placeholder {
 			text-transform: none;
+			font-size: 12px;
 		}
 
 		&:-ms-input-placeholder {
 			text-transform: none;
+			font-size: 12px;
 		}
 
 		&::-ms-input-placeholder {
 			text-transform: none;
+			font-size: 12px;
 		}
 
 		&::placeholder {
 			text-transform: none;
+			font-size: 12px;
 		}
 	}
 }
@@ -3574,22 +3595,6 @@ label {
 		position: relative;
 		display: block;
 		width: fit-content;
-
-		&:not(:last-child) {
-			margin-bottom: 24px;
-		}
-
-		&:last-child {
-			width: 100%;
-
-			.text {
-				width: 100%;
-
-				.icon {
-					opacity: 0;
-				}
-			}
-		}
 
 		input[type="radio"] {
 			display: block;
@@ -3604,7 +3609,7 @@ label {
 			cursor: pointer;
 
 			&:checked {
-				&~.text {
+				&~.content {
 					color: #1A0B03;
 					font-weight: 700;
 					border-color: $color_orange;
@@ -3626,7 +3631,7 @@ label {
 
 		}
 
-		.text {
+		.content {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -3671,5 +3676,227 @@ label {
 				opacity: 0.6;
 			}
 		}
+	}
+}
+
+.quantity_list {
+	display: flex;
+	gap: 30px;
+
+	.item {
+		width: calc(50% - 15px);
+
+		.text {
+			margin-bottom: 10px;
+			font-size: 14px;
+			font-weight: 500;
+
+			span {
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+.selection_quantity {
+	border-radius: 58px;
+	border: 3px solid #DF4402;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 5px 22px;
+
+	input[type="number"] {
+		-moz-appearance: textfield;
+		-webkit-appearance: textfield;
+		appearance: textfield;
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			display: none;
+		}
+	}
+
+	.counter {
+		background: transparent;
+		width: 50px;
+		text-align: center;
+		font-size: 16px;
+		border: none;
+	}
+
+	.button {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 100%;
+		border: 2px solid $color_orange;
+		box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+		flex: 0 0 auto;
+		transition: $transition;
+
+		&:hover {
+			border-color: $color_black;
+
+			span {
+				background: $color_black;
+			}
+
+			&.up {
+
+				span {
+					&:after {
+						background: $color_black
+					}
+				}
+			}
+		}
+
+		&.up {
+			span {
+				position: relative;
+
+				&:after {
+					transition: $transition;
+					content: '';
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%) rotate(90deg);
+					width: 100%;
+					height: 2px;
+					background: $color_orange;
+
+				}
+			}
+		}
+
+		span {
+			transition: $transition;
+			width: 16px;
+			height: 2px;
+			background: $color_orange;
+		}
+	}
+}
+
+@media screen and (max-width:992px) {
+	.application_block {
+		flex-direction: column;
+
+		.image {
+			display: none;
+		}
+
+		.form {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and (min-width:577px) {
+	.radio_list .item {
+		&:not(:last-child) {
+			margin-bottom: 24px;
+		}
+
+		&.radio_tel {
+			width: 100%;
+
+			.content {
+				width: 100%;
+
+				.icon {
+					opacity: 0;
+				}
+			}
+		}
+	}
+
+	.radio_input {
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 46%;
+
+	}
+}
+
+@media screen and (max-width:576px) {
+
+	.radio_list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+
+		.item {
+			&:not(:last-child) {
+				margin-bottom: 0;
+			}
+
+			.content {
+				width: 80px;
+				min-width: initial;
+				padding: 5px 10px;
+
+				span {
+					width: 18px;
+					height: 18px;
+				}
+			}
+
+			.text {
+				display: none;
+			}
+		}
+
+	}
+
+	.radio_input {
+		margin-top: 20px;
+	}
+
+	.radio_input .input_text {
+		margin-top: 20px;
+	}
+
+	.application_block .form {
+		padding: 40px 20px;
+	}
+
+	.quantity_list {
+		gap: 20px;
+
+		.item {
+			width: calc(50% - 10px);
+		}
+	}
+}
+
+@media screen and (max-width:440px) {
+	.quantity_list {
+		flex-direction: column;
+		gap: 10px;
+
+		.item {
+			width: 100%;
+		}
+	}
+
+	.application_block .form {
+		padding: 30px 16px;
+	}
+
+	.radio_list {
+		gap: 10px;
+	}
+
+	.form_title {
+		margin-top: 30px;
+		margin-bottom: 16px;
 	}
 }

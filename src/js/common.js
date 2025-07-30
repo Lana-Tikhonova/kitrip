@@ -245,4 +245,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    document.addEventListener('click', function (event) {
+        const button = event.target.closest('.selection_quantity .button');
+        if (!button) return;
+
+        const block = button.closest('.selection_quantity');
+        const input = block.querySelector('.counter');
+
+        let count = parseInt(input.getAttribute('data-count'), 10);
+        const min = parseInt(input.getAttribute('min'), 10) || 0;
+
+        if (button.classList.contains('down')) {
+            count = Math.max(min, count - 1);
+        } else if (button.classList.contains('up')) {
+            count += 1;
+        }
+
+        input.value = count;
+        input.setAttribute('data-count', count);
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+
+    document.addEventListener('input', function (event) {
+        if (event.target.matches('.selection_quantity .counter')) {
+            const input = event.target;
+            const value = parseInt(input.value, 10);
+            const min = parseInt(input.getAttribute('min'), 10) || 0;
+
+            const validValue = isNaN(value) ? min : Math.max(min, value);
+            input.value = validValue;
+            input.setAttribute('data-count', validValue);
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+
+    // валидация телефона
+    $.validator.addMethod("phoneRU", function (value, element) {
+        const digits = value.replace(/\D/g, '');
+        return this.optional(element) || digits.length === 11;
+    }, "Введите корректный номер телефона");
+
+    // jq валидация
+    $('form.validate').each(function () {
+        $(this).validate({
+            errorPlacement: function (error, element) {
+                error.appendTo(element.closest(".form_input_group"));
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass(errorClass);
+                $(element).closest('.form_input_group').addClass(errorClass);
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass(errorClass);
+                $(element).closest('.form_input_group').removeClass(errorClass);
+            },
+            rules: {
+                agree: "required",
+                phone: {
+                    required: true,
+                    phoneRU: true
+                }
+            },
+            messages: {
+                agree: "",
+            }
+        })
+    });
+
 })
