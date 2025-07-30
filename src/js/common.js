@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         delay: 100,
         once: true,
         duration: 700,
-        offset: 100,
+        offset: window.innerWidth < 577 ? 0 : 100,
     });
 
     document.querySelector('.menu_btn').addEventListener('click', function () {
@@ -124,25 +124,36 @@ document.addEventListener('DOMContentLoaded', () => {
             clickable: true,
         },
     });
-    const swiperReviews = new Swiper(".reviews_slider", {
-        slidesPerView: 2,
-        spaceBetween: 16,
-        watchSlidesProgress: true,
-        mousewheelControl: true,
-        watchOverflow: true,
-        watchSlidesVisibility: true,
-        speed: 1000,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-        },
-        breakpoints: {
-            992: {
-                slidesPerView: 2,
-                spaceBetween: 40,
+    document.querySelectorAll('.reviews_slider_wrapper').forEach((wrapper) => {
+        const sliderEl = wrapper.querySelector('.reviews_slider');
+        const nextBtn = wrapper.querySelector('.swiper-button-next');
+        const prevBtn = wrapper.querySelector('.swiper-button-prev');
+
+        new Swiper(sliderEl, {
+            slidesPerView: 'auto',
+            spaceBetween: 16,
+            watchSlidesProgress: true,
+            mousewheelControl: true,
+            watchOverflow: true,
+            watchSlidesVisibility: true,
+            speed: 1000,
+            navigation: {
+                nextEl: nextBtn,
+                prevEl: prevBtn
             },
-        },
+            breakpoints: {
+                1201: {
+                    slidesPerView: 2,
+                    spaceBetween: 40,
+                },
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
     });
+
 
     const allTabs = document.querySelectorAll(".tabs");
 
@@ -216,6 +227,22 @@ document.addEventListener('DOMContentLoaded', () => {
         interactive: true,
         duration: [400, 200],
         theme: 'consumable_theme',
+    });
+
+    let questions = document.querySelectorAll('.faq_item .question');
+    questions.forEach(question => {
+        question.addEventListener('click', () => {
+            const parent = question.parentElement;
+            const answer = parent.querySelector('.answer');
+
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                parent.classList.remove('active');
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                parent.classList.add('active');
+            }
+        });
     });
 
 })
