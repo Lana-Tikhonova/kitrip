@@ -325,4 +325,32 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     });
 
+    // Замена placeholder
+    document.querySelectorAll('.radio_block').forEach(block => {
+        const radios = block.querySelectorAll('input[type="radio"][name="phone"]');
+        const input = block.querySelector('.radio_input input[type="tel"]');
+
+        function updatePlaceholder() {
+            const checked = block.querySelector('input[type="radio"][name="phone"]:checked');
+            if (!checked) return;
+
+            const label = checked.closest('label');
+            const text = label.querySelector('.text')?.textContent.trim();
+
+            if (text.includes('WhatsApp')) {
+                input.placeholder = 'Номер телефона с WhatsApp';
+            } else if (text.includes('Telegram')) {
+                input.placeholder = 'Номер телефона с Telegram';
+            } else {
+                input.placeholder = 'Номер телефона';
+            }
+        }
+
+        updatePlaceholder();
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', updatePlaceholder);
+        });
+    });
+
 })
