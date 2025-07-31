@@ -353,4 +353,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // куки
+    const banner = document.getElementById('cookieBlock');
+    const acceptBtn = document.querySelector('.cookies_btn_all');
+    const declineBtn = document.querySelector('.cookies_btn_decline');
+
+    const userCookieChoice = localStorage.getItem('cookieConsent');
+
+    if (!userCookieChoice) {
+        banner.classList.remove('hidden');
+    } else {
+        banner.classList.add('hidden');
+    }
+
+    acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        banner.classList.add('hidden');
+    });
+
+    declineBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        banner.classList.add('hidden');
+    });
+
 })
