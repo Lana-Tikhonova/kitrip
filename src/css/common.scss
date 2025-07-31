@@ -3828,8 +3828,14 @@ label {
 			margin-bottom: 24px;
 		}
 
+
+
 		&.radio_tel {
 			width: 100%;
+
+			input[type=radio]:checked~.content .icon {
+				opacity: 0;
+			}
 
 			.content {
 				width: 100%;
